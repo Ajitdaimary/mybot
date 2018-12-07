@@ -24,6 +24,16 @@ async def status_task():
         await client.change_presence(game=discord.Game(name='in '+str(len(client.servers))+' servers'))
         await asyncio.sleep(5)
 	
+	
+@client.event
+async def on_ready():
+    print('Logged in as '+client.user.name+' (ID:'+client.user.id+') | Connected to '+str(len(client.servers))+' servers | Connected to '+str(len(set(client.get_all_members())))+' users')
+    print('--------')
+    print('--------')
+    print('Started New here ')
+    print('Created by Soyal')
+    client.loop.create_task(status_task())
+	
 def is_owner(ctx):
     return ctx.message.author.id == "472680171451973632,485868646854557696" #replace_it_with_your_discord_id
 
