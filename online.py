@@ -20,7 +20,7 @@ async def on_ready():
 	print('Logged in as '+client.user.name+'')
 	print('--------')
 	print('--------')
-	print('Started Soyal') #add_your_bot_name_here
+	print('Started marcos') #add_your_bot_name_here
 	return await client.change_presence(game=discord.Game(name='KELLING MARCOS')) #add_your_bot_status_here
 	
 def is_owner(ctx):
@@ -91,13 +91,13 @@ async def emojiids(ctx):
 
 async def info(ctx):
 
-    await client.say('***THIS BOT IS MADE BY SOYAL AND IF YOU NEED TO INVITE THIS BOT SO WRITE `sk!botinvite` THANKS***')
+    await client.say('***THIS BOT IS MADE BY MARCOS AND IF YOU NEED TO INVITE THIS BOT SO WRITE `!!botinvite` THANKS***')
 
 @client.command(pass_context = True)
 
 async def botinvite(ctx):
 
-    await client.say('https://discordapp.com/api/oauth2/authorize?client_id=518672070377209857&permissions=8&scope=bot')
+    await client.say('https://discordapp.com/api/oauth2/authorize?client_id=520210835143131146&permissions=8&scope=bot')
 
 @client.command(pass_context = True)
 async def test(ctx):
@@ -250,7 +250,7 @@ async def friend(ctx, user:discord.Member,):
 async def ownerinfo(ctx):
     embed = discord.Embed(title="Information about owner", description="Bot Name- MARCOS", color=0x00ff00)
     embed.set_footer(text="MARCOS")
-    embed.set_author(name=" Bot Owner Name- MARCOS,472680171451973632")
+    embed.set_author(name=" Bot Owner Name- MARCOS")
     embed.add_field(name="Site- coming soon...", value="Thanks for adding our bot", inline=True)
     await client.say(embed=embed)
 
@@ -383,7 +383,7 @@ async def ban(ctx,user:discord.Member):
       await client.ban(user)
       await client.say(user.name+' was banned. Good bye '+user.name+'!')
       for channel in member.server.channels:
-        if channel.name == 'soyal-log':
+        if channel.name == 'information-log':
             embed=discord.Embed(title="User banned!", description="**{0}** banned by **{1}**!".format(member, ctx.message.author), color=0x38761D)
             await client.send_message(channel, embed=embed)
 
