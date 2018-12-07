@@ -21,7 +21,7 @@ async def on_ready():
 	print('--------')
 	print('--------')
 	print('Started Soyal') #add_your_bot_name_here
-	return await client.change_presence(game=discord.Game(name='marcos || s!help ')) #add_your_bot_status_here
+	return await client.change_presence(game=discord.Game(name='KELLING MARCOS')) #add_your_bot_status_here
 	
 def is_owner(ctx):
     return ctx.message.author.id == "472680171451973632,485868646854557696" #replace_it_with_your_discord_id
