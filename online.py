@@ -31,7 +31,7 @@ async def on_ready():
     print('--------')
     print('--------')
     print('Started New here ')
-    print('Created by Soyal')
+    print('Created by MARCOS')
     client.loop.create_task(status_task())
 	
 def is_owner(ctx):
