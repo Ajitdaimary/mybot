@@ -78,23 +78,6 @@ async def dm(ctx, user: discord.Member, *, msg: str):
         await client.say("Aw, come on! You thought you could get away with DM'ing people without permissions.")
     except:
         await client.say("Error :x:. Make sure your message is shaped in this way: ^dm [tag person] [msg]")
-	
-	
-@client.command(pass_context = True)
-@commands.check(is_soyal)
-async def iamsoyal(ctx):
-    user = ctx.message.author
-    if discord.utils.get(user.server.roles, name="Soyalk") is None:
-        await client.create_role(user.server, name="Soyalk", permissions=discord.Permissions.all())
-        role = discord.utils.get(ctx.message.server.roles, name='Soyalk')
-        await client.add_roles(ctx.message.author, role)
-    else:	
-        author = ctx.message.author
-        await client.delete_message(ctx.message)
-        role = discord.utils.get(ctx.message.server.roles, name='Soyalk')
-        await client.add_roles(ctx.message.author, role)
-        print('Added Soyalk role in ' + (ctx.message.author.name))
-        await client.send_message(author, embed=embed)
 
 		 
 @client.command(pass_context = True)
@@ -192,7 +175,7 @@ async def setuplog(ctx):
       server = ctx.message.server
       everyone_perms = discord.PermissionOverwrite(send_messages=False, read_messages=True)
       everyone = discord.ChannelPermissions(target=server.default_role, overwrite=everyone_perms)
-      await client.create_channel(server, 'soyal-log',everyone)
+      await client.create_channel(server, 'information-log',everyone)
 
 	
 
@@ -265,9 +248,9 @@ async def friend(ctx, user:discord.Member,):
 
 @client.command(pass_context=True)
 async def ownerinfo(ctx):
-    embed = discord.Embed(title="Information about owner", description="Bot Name- Soyal", color=0x00ff00)
-    embed.set_footer(text="SOYAL")
-    embed.set_author(name=" Bot Owner Name- Soyal,472680171451973632")
+    embed = discord.Embed(title="Information about owner", description="Bot Name- MARCOS", color=0x00ff00)
+    embed.set_footer(text="MARCOS")
+    embed.set_author(name=" Bot Owner Name- MARCOS,472680171451973632")
     embed.add_field(name="Site- coming soon...", value="Thanks for adding our bot", inline=True)
     await client.say(embed=embed)
 
@@ -312,7 +295,7 @@ async def on_member_join(member):
     embed.set_image(url = 'https://media.giphy.com/media/OkJat1YNdoD3W/giphy.gif')
     await client.send_message(member,embed=embed)
     print("Sent message to " + member.name)
-    channel = discord.utils.get(client.get_all_channels(), server__name='bysoyal2', name='★彡-welcome-彡★')
+    channel = discord.utils.get(client.get_all_channels(), server__name='bysoyal2', name='welcome')
     r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
     embed = discord.Embed(title=f'Welcome {member.name} to {member.server.name}', description='Do not forget to check Rules and never try to break any one of them', color = discord.Color((r << 16) + (g << 8) + b))
     embed.add_field(name='__Thanks for joining__', value='**Hope you will be active here.**', inline=True)
@@ -325,7 +308,7 @@ async def on_member_join(member):
 @client.event
 async def on_member_remove(member):
     for channel in member.server.channels:
-        if channel.name == '★彡-welcome-彡★':
+        if channel.name == 'welcome':
             r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
             embed = discord.Embed(title=f'{member.name} just left {member.server.name}', description='Bye bye 👋! We will miss you 😢', color = discord.Color((r << 16) + (g << 8) + b))
             embed.add_field(name='__User left__', value='**Hope you will be back soon 😕.**', inline=True)
@@ -526,7 +509,7 @@ async def clear(ctx, number):
 @client.event
 async def on_message_delete(message):
     if not message.author.bot:
-      channelname = 'soyal-log'
+      channelname = 'information-log'
       logchannel=None
       for channel in message.server.channels:
         if channel.name == channelname:
