@@ -517,6 +517,20 @@ async def on_message_delete(message):
           embed.add_field(name = 'Channel:',value ='{}'.format(message.channel.name),inline = False)
           await client.send_message(logchannel,  embed=embed)	
 	
-	
+  @commands.command()
+    async def boobs(self, ctx):
+        """WARNING: NSFW command. Gets pictures of boobs."""
+        if not ctx.channel.nsfw:
+            return await ctx.send("Are you trying to **kill innocent people's eyes**?? I think not!")
+        if not ctx.channel.nsfw:
+            return await ctx.send("Are you trying to **kill innocent people's eyes**?? I think not!")
+        upvoted = await self.utils.check_upvote(ctx.author)
+        if not upvoted:
+            return await self.handle_not_upvoted(ctx)
+        res = await self.req("boobs")
+        em = discord.Embed(color=0xf9e236, title="Boobs :eggplant: ")
+        em.set_image(url=res.url)
+        em.set_footer(text=f"Requested by: {str(ctx.author)} | Powered by nekos.life", icon_url=ctx.author.avatar_url)
+        await ctx.send(embed=em)
 	
 client.run(os.getenv('Token'))
