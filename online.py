@@ -84,6 +84,21 @@ async def announce(ctx, channel: discord.Channel=None, *, msg: str):
     embed=discord.Embed(title="Announcement", description="{}".format(msg), color = discord.Color((r << 16) + (g << 8) + b))
     await client.send_message(channel, embed=embed)
     await client.delete_message(ctx.message)
+
+
+@client.command(pass_context=True)
+@commands.has_permissions(administrator=True)
+async def embed(ctx, *args):
+    if ctx.message.author.bot:
+      return
+    else:
+      argstr = " ".join(args)
+      r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+      text = argstr
+      color = discord.Color((r << 16) + (g << 8) + b)
+      await client.send_message(ctx.message.channel, embed=Embed(color = color, description=text))
+      await client.delete_message(ctx.message)    
+
 	
 	
 @client.command(pass_context = True)
