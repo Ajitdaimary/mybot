@@ -124,9 +124,6 @@ async def emojiids(ctx):
 	
 @client.command(pass_context = True)
 
-async def server(ctx):
-
-    await client.say('https:discord.gg/V6ZRGte')
 
 @client.command(pass_context = True)
 
