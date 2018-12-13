@@ -1,4 +1,3 @@
-
 import discord
 from discord.ext import commands
 from discord.ext.commands.cooldowns import BucketType
@@ -33,7 +32,7 @@ async def on_ready():
     print('--------')
     print('--------')
     print('Started New here ')
-    print('Created by marcos')
+    print('Created by MARCOS')
     client.loop.create_task(status_task())
 	
 def is_owner(ctx):
@@ -74,7 +73,7 @@ async def servers():
  
 	
 @client.command(pass_context=True)
-@commands.check(is_marcos)
+@commands.check(is_soyal)
 async def botdm(ctx, user: discord.Member, *, msg: str):
     await client.send_typing(user)
     await client.send_message(user, msg)
@@ -86,7 +85,7 @@ async def announce(ctx, channel: discord.Channel=None, *, msg: str):
     embed=discord.Embed(title="Announcement", description="{}".format(msg), color = discord.Color((r << 16) + (g << 8) + b))
     await client.send_message(channel, embed=embed)
     await client.delete_message(ctx.message)
-	
+
 
 @client.command(pass_context=True)
 @commands.has_permissions(administrator=True)
@@ -123,7 +122,7 @@ async def emojiids(ctx):
     print(f"<:{emoji.name}:{emoji.id}>")
     print(" ")    
 	
-
+	
 @client.command(pass_context = True)
 
 async def botinvite(ctx):
@@ -219,7 +218,7 @@ async def setupwelcome(ctx):
       server = ctx.message.server
       everyone_perms = discord.PermissionOverwrite(send_messages=False, read_messages=True)
       everyone = discord.ChannelPermissions(target=server.default_role, overwrite=everyone_perms)
-      await client.create_channel(server, '🎉-welcome-🎊',everyone)
+      await client.create_channel(server, 'welcome_swagat',everyone)
 	
 	
 @client.command(pass_context = True)
@@ -316,19 +315,6 @@ async def userinfo(ctx, user: discord.Member):
       embed.set_thumbnail(url=user.avatar_url)
       await client.say(embed=embed)
 
-
-@client.event
-async def on_member_join(member):
-    for channel in member.server.channels:
-        if channel.name == '🎉-welcome-🎊':
-            r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
-            embed = discord.Embed(title=f'Welcome {member.name} to {member.server.name}', description='Do not forget to check rules and never try to break any one of them', color = discord.Color((r << 16) + (g << 8) + b))
-            embed.add_field(name='__Thanks for joining__', value='**Hope you will be active here.**', inline=True)
-            embed.set_thumbnail(url='https://cdn.discordapp.com/attachments/486489391083159574/520207004334292992/Loading.gif') 
-            embed.set_image(url = member.avatar_url)
-            embed.add_field(name='__Join position__', value='{}'.format(str(member.server.member_count)), inline=True)
-            embed.add_field(name='Time of joining', value=member.joined_at)
-            await client.send_message(channel, embed=embed)
 	
 @client.event
 async def on_member_remove(member):
@@ -611,5 +597,6 @@ async def membercount(ctx, *args):
     await client.send_message(ctx.message.channel, embed=em)
     await client.delete_message(ctx.message)
 	
+
 	
 client.run(os.getenv('Token'))
