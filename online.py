@@ -23,6 +23,8 @@ async def status_task():
         await asyncio.sleep(5)
         await client.change_presence(game=discord.Game(name='in '+str(len(client.servers))+' servers'))
         await asyncio.sleep(5)
+	await client.change_presence(game=discord.Game(name='!!help'))
+        await asyncio.sleep(5)
 	
 	
 @client.event
@@ -35,10 +37,10 @@ async def on_ready():
     client.loop.create_task(status_task())
 	
 def is_owner(ctx):
-    return ctx.message.author.id == "472680171451973632,485868646854557696" #replace_it_with_your_discord_id
+    return ctx.message.author.id == "498378677512437762" #replace_it_with_your_discord_id
 
 def is_soyal(ctx):
-    return ctx.message.author.id == "472680171451973632" 		
+    return ctx.message.author.id == "498378677512437762" 		
 
 @client.event
 async def on_message(message):
