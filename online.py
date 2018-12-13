@@ -121,7 +121,6 @@ async def emojiids(ctx):
     print(f"<:{emoji.name}:{emoji.id}>")
     print(" ")    
 	
-@client.command(pass_context = True)
 
 
 @client.command(pass_context = True)
