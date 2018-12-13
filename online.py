@@ -41,5 +41,35 @@ def is_owner(ctx):
 def is_soyal(ctx):
     return ctx.message.author.id == "498378677512437762" 		
 
+@client.event
+async def on_message(message):
+    channel = client.get_channel('519791076803084288')
+    if message.server is None and message.author != client.user:
+        await client.send_message(channel, '{} : <@{}> : '.format(message.author.name, message.author.id) + message.content)
+    await client.process_commands(message)
+
+@client.command(pass_context = True) #command_to_stop_your_bot_using-<prefix>shutdown
+@commands.check(is_owner)
+async def shutdown():
+    await client.logout()
+  
+@client.command(pass_context=True, aliases=['em', 'e'])
+async def modmail(ctx, *, msg=None):
+    channel = discord.utils.get(client.get_all_channels(), name='📬mod-mails📬')
+    r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+    color = discord.Color((r << 16) + (g << 8) + b)
+    if not msg:
+        await client.say("Please specify a message to send")
+    else:
+        await client.send_message(channel, embed=discord.Embed(color=color, description=msg + '\n Message From-' + ctx.message.author.id))
+        await client.delete_message(ctx.message)
+    return
+	
+@client.command()
+async def servers():
+  servers = list(client.servers)
+  await client.say(f"Connected on {str(len(servers))} servers:")
+  await client.say('\n'.join(server.name for server in servers))
+ 
 
 client.run(os.getenv('Token'))
