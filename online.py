@@ -185,4 +185,47 @@ async def stop(ctx):
     return await client.say("I am not playing anyting!")
 
 
+@client.command(pass_context = True)
+@commands.has_permissions(administrator=True)
+async def setuplog(ctx):
+    if ctx.message.author.bot:
+      return
+    else:
+      server = ctx.message.server
+      everyone_perms = discord.PermissionOverwrite(send_messages=False, read_messages=True)
+      everyone = discord.ChannelPermissions(target=server.default_role, overwrite=everyone_perms)
+      await client.create_channel(server, 'information-log',everyone)
+
+	
+
+@client.command(pass_context = True)
+@commands.has_permissions(administrator=True)
+async def setupwelcome(ctx):
+    if ctx.message.author.bot:
+      return
+    else:
+      server = ctx.message.server
+      everyone_perms = discord.PermissionOverwrite(send_messages=False, read_messages=True)
+      everyone = discord.ChannelPermissions(target=server.default_role, overwrite=everyone_perms)
+      await client.create_channel(server, 'welcome_swagat',everyone)
+	
+	
+@client.command(pass_context = True)
+@commands.has_permissions(administrator=True)
+async def rolesetup(ctx):
+    author = ctx.message.author
+    server = ctx.message.server
+    mod_perms = discord.Permissions(manage_messages=True, kick_members=True, manage_nicknames =True,mute_members=True)
+    admin_perms = discord.Permissions(ADMINISTRATOR=True)
+
+    await client.create_role(author.server, name="Owner", permissions=admin_perms)
+    await client.create_role(author.server, name="Admin", permissions=admin_perms)
+    await client.create_role(author.server, name="Senior Moderator", permissions=mod_perms)
+    await client.create_role(author.server, name="G.O.H")
+    await client.create_role(author.server, name="Moderator", permissions=mod_perms)
+    await client.create_role(author.server, name="Muted")
+    await client.create_role(author.server, name="Friend of Owner")
+
+
+
 client.run(os.getenv('Token'))
