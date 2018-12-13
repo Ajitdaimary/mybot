@@ -286,6 +286,92 @@ async def getuser(ctx, role: discord.Role = None):
     if empty:
         await client.say("Nobody has the role {}".format(role.mention))
 
+	
+@client.command(pass_context = True)
+@commands.has_permissions(kick_members=True)     
+async def userinfo(ctx, user: discord.Member):
+    if ctx.message.author.bot:
+      return
+    else:
+      r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+      embed = discord.Embed(title="{}'s info".format(user.name), description="Here's what I could find.", color = discord.Color((r << 16) + (g << 8) + b))
+      embed.add_field(name="Name", value=user.name, inline=True)
+      embed.add_field(name="ID", value=user.id, inline=True)
+      embed.add_field(name="Status", value=user.status, inline=True)
+      embed.add_field(name="Highest role", value=user.top_role)
+      embed.add_field(name="Joined", value=user.joined_at)
+      embed.set_thumbnail(url=user.avatar_url)
+      await client.say(embed=embed)
+
+	
+@client.event
+async def on_member_remove(member):
+    for channel in member.server.channels:
+        if channel.name == 'welcome':
+            r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+            embed = discord.Embed(title=f'{member.name} just left {member.server.name}', description='Bye bye 👋! We will miss you 😢', color = discord.Color((r << 16) + (g << 8) + b))
+            embed.add_field(name='__User left__', value='**Hope you will be back soon 😕.**', inline=True)
+            embed.add_field(name='Your join position was', value=member.joined_at)
+            embed.set_thumbnail(url=member.avatar_url)
+            await client.send_message(channel, embed=embed)
+
+
+@client.command(pass_context = True)
+@commands.has_permissions(kick_members=True) 
+@commands.cooldown(rate=5,per=86400,type=BucketType.user) 
+async def access(ctx, member: discord.Member):
+    if ctx.message.author.bot:
+      return
+    else:
+      role = discord.utils.get(member.server.roles, name='access')
+      await client.add_roles(member, role)
+      await client.say("Gave access to {}".format(member))
+      for channel in member.server.channels:
+        if channel.name == 'soyal-log':
+            embed=discord.Embed(title="User Got Access!", description="**{0}** got access from **{1}**!".format(member, ctx.message.author), color=0x020202)
+            await client.send_message(channel, embed=embed)
+            await asyncio.sleep(45*60)
+            await client.remove_roles(member, role)
+
+
+@client.command(pass_context = True)
+@commands.has_permissions(manage_nicknames=True)     
+async def setnick(ctx, user: discord.Member, *, nickname):
+    await client.change_nickname(user, nickname)
+    await client.delete_message(ctx.message)
+    for channel in user.server.channels:
+      if channel.name == 'soyal-log':
+          embed=discord.Embed(title="Changed Nickname of User!", description="**{0}** nickname was changed by **{1}**!".format(member, ctx.message.author), color=0x0521F6)
+          await client.send_message(channel, embed=embed)
+
+
+
+@client.command(pass_context=True)
+async def poll(ctx, question, *options: str):
+        if len(options) <= 1:
+            await client.say('You need more than one option to make a poll!')
+            return
+        if len(options) > 10:
+            await client.say('You cannot make a poll for more than 10 things!')
+            return
+
+        if len(options) == 2 and options[0] == 'yes' and options[1] == 'no':
+            reactions = ['👍', '👎']
+        else:
+            reactions = ['1\u20e3', '2\u20e3', '3\u20e3', '4\u20e3', '5\u20e3', '6\u20e3', '7\u20e3', '8\u20e3', '9\u20e3', '\U0001f51f']
+
+        description = []
+        for x, option in enumerate(options):
+            description += '\n {} {}'.format(reactions[x], option)
+            r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+        embed = discord.Embed(title=question, description=''.join(description), color = discord.Color((r << 16) + (g << 8) + b))
+        react_message = await client.say(embed=embed)
+        for reaction in reactions[:len(options)]:
+            await client.add_reaction(react_message, reaction)
+        embed.set_footer(text='Poll ID: {}'.format(react_message.id))
+        await client.edit_message(react_message, embed=embed)
+
+
 
 
 
