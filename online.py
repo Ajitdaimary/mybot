@@ -130,5 +130,59 @@ async def botinvite(ctx):
     await client.say('https://discordapp.com/api/oauth2/authorize?client_id=520267296506249216&permissions=8&scope=bot')
 
 
+@client.command(pass_context = True)
+async def test(ctx):
+    if ctx.message.author.bot:
+      return
+    else:
+      await client.send_message(ctx.message.author, 'Hii bro what supp')
+      await client.say('Check your dm ')
+
+@client.command(pass_context=True)  
+@commands.check(is_owner)     
+async def kick(ctx,user:discord.Member):
+    if user.server_permissions.kick_members:
+      await client.say('**He is mod/admin and i am unable to kick him/her**')
+      return
+    else:
+      await client.kick(user)
+      await client.say(user.name+' was kicked. Good bye '+user.name+'!')
+      await client.delete_message(ctx.message)
+      for channel in user.server.channels:
+        if channel.name == 'Soyal-log':
+            embed=discord.Embed(title="User kicked!", description="**{0}** is kicked by **{1}**!".format(user, ctx.message.author), color=0xFDE112)
+            await client.send_message(channel, embed=embed)
+
+
+@client.command(pass_context = True)
+async def play(ctx, *, url):
+    author = ctx.message.author
+    voice_channel = author.voice_channel
+    try:
+        vc = await client.join_voice_channel(voice_channel)
+        msg = await client.say("Loading...")
+        player = await vc.create_ytdl_player("ytsearch:" + url)
+        player.start()
+        await client.say("Succesfully Loaded ur song!")
+        await client.delete_message(msg)
+    except Exception as e:
+        print(e)
+        await client.say("Reconnecting")
+        for x in client.voice_clients:
+            if(x.server == ctx.message.server):
+                await x.disconnect()
+                nvc = await client.join_voice_channel(voice_channel)
+                msg = await client.say("Loading...")
+                player2 = await nvc.create_ytdl_player("ytsearch:" + url)
+                player2.start
+
+@client.command(pass_context = True)
+async def stop(ctx):
+    for x in client.voice_clients:
+        if(x.server == ctx.message.server):
+            return await x.disconnect()
+
+    return await client.say("I am not playing anyting!")
+
 
 client.run(os.getenv('Token'))
