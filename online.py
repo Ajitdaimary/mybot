@@ -41,12 +41,6 @@ def is_owner(ctx):
 def is_soyal(ctx):
     return ctx.message.author.id == "498378677512437762" 		
 
-@client.event
-async def on_message(message):
-    channel = client.get_channel('522661755655290886')
-    if message.server is None and message.author != client.user:
-        await client.send_message(channel, '{} : <@{}> : '.format(message.author.name, message.author.id) + message.content)
-    await client.process_commands(message)
 
 @client.command(pass_context = True) #command_to_stop_your_bot_using-<prefix>shutdown
 @commands.check(is_owner)
