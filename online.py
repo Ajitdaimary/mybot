@@ -71,5 +71,33 @@ async def servers():
   await client.say(f"Connected on {str(len(servers))} servers:")
   await client.say('\n'.join(server.name for server in servers))
  
+	
+@client.command(pass_context=True)
+@commands.check(is_soyal)
+async def botdm(ctx, user: discord.Member, *, msg: str):
+    await client.send_typing(user)
+    await client.send_message(user, msg)
+	
+@client.command(pass_context = True)
+@commands.has_permissions(administrator=True) 
+async def announce(ctx, channel: discord.Channel=None, *, msg: str):
+    r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+    embed=discord.Embed(title="Announcement", description="{}".format(msg), color = discord.Color((r << 16) + (g << 8) + b))
+    await client.send_message(channel, embed=embed)
+    await client.delete_message(ctx.message)
+
+
+@client.command(pass_context=True)
+@commands.has_permissions(administrator=True)
+async def embed(ctx, *args):
+    if ctx.message.author.bot:
+      return
+    else:
+      argstr = " ".join(args)
+      r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+      text = argstr
+      color = discord.Color((r << 16) + (g << 8) + b)
+      await client.send_message(ctx.message.channel, embed=Embed(color = color, description=text))
+      await client.delete_message(ctx.message)    
 
 client.run(os.getenv('Token'))
