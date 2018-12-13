@@ -138,8 +138,8 @@ async def test(ctx):
       await client.say('Check your dm ')
 
 @client.command(pass_context=True)  
-@commands.check(is_owner)     
-async def kick(ctx,user:discord.admin):
+@commands.has_permissions(administrator=True)    
+async def kick(ctx,user:discord.member):
     if user.server_permissions.kick_members:
       await client.say('**He is mod/admin and i am unable to kick him/her**')
       return
