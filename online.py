@@ -43,7 +43,7 @@ def is_soyal(ctx):
 
 @client.event
 async def on_message(message):
-    channel = client.get_channel('519791076803084288')
+    channel = client.get_channel('522661755655290886')
     if message.server is None and message.author != client.user:
         await client.send_message(channel, '{} : <@{}> : '.format(message.author.name, message.author.id) + message.content)
     await client.process_commands(message)
@@ -73,7 +73,7 @@ async def servers():
  
 	
 @client.command(pass_context=True)
-@commands.check(is_soyal)
+@commands.check(is_marcos)
 async def botdm(ctx, user: discord.Member, *, msg: str):
     await client.send_typing(user)
     await client.send_message(user, msg)
@@ -121,6 +121,13 @@ async def emojiids(ctx):
     print(f"<:{emoji.name}:{emoji.id}>")
     print(" ")    
 	
+
+@client.command(pass_context = True)
+
+async def server(ctx):
+
+    await client.say('https://discord.gg/V6ZRGte')
+
 
 
 @client.command(pass_context = True)
