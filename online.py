@@ -226,6 +226,67 @@ async def rolesetup(ctx):
     await client.create_role(author.server, name="Muted")
     await client.create_role(author.server, name="Friend of Owner")
 
+@commands.has_permissions(manage_roles=True)     
+async def role(ctx, user: discord.Member, *, role: discord.Role = None):
+        if role is None:
+            return await client.say("You haven't specified a role! ")
+
+        if role not in user.roles:
+            await client.add_roles(user, role)
+            return await client.say("{} role has been added to {}.".format(role, user))
+
+        if role in user.roles:
+            await client.remove_roles(user, role)
+            return await client.say("{} role has been removed from {}.".format(role, user))
+ 
+@client.command(pass_context = True)
+@commands.has_permissions(kick_members=True)
+async def warn(ctx, userName: discord.User, *, message:str): 
+    await client.send_message(userName, "You have been warned for: **{}**".format(message))
+    await client.say(":warning: __**{0} Has Been Warned!**__ :warning: ** Reason:{1}** ".format(userName,message))
+    pass
+
+
+@client.command(pass_context = True)
+@commands.has_permissions(administrator=True)
+async def say(ctx, *, msg = None):
+    await client.delete_message(ctx.message)
+
+    if not msg: await client.say("Please specify a message to send")
+    else: await client.say(msg)
+    return
+
+@client.command(pass_context=True)
+@commands.has_permissions(administrator=True)
+async def friend(ctx, user:discord.Member,):
+    await client.delete_message(ctx.message)
+    role = discord.utils.get(ctx.message.server.roles, name='Friend of Owner')
+    await client.add_roles(ctx.message.mentions[0], role)
+
+
+@client.command(pass_context=True)
+async def ownerinfo(ctx):
+    embed = discord.Embed(title="Information about owner", description="Bot Name- MARCOS", color=0x00ff00)
+    embed.set_footer(text="MARCOS")
+    embed.set_author(name=" Bot Owner Name- MARCOS")
+    embed.add_field(name="Site- coming soon...", value="Thanks for adding our bot", inline=True)
+    await client.say(embed=embed)
+
+@client.command(pass_context=True)  
+@commands.has_permissions(kick_members=True)
+async def getuser(ctx, role: discord.Role = None):
+    if role is None:
+        await client.say('There is no "STAFF" role on this server!')
+        return
+    empty = True
+    for member in ctx.message.server.members:
+        if role in member.roles:
+            await client.say("{0.name}: {0.id}".format(member))
+            empty = False
+    if empty:
+        await client.say("Nobody has the role {}".format(role.mention))
+
+
 
 
 client.run(os.getenv('Token'))
