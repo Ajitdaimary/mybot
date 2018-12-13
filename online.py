@@ -33,7 +33,7 @@ async def on_ready():
     print('--------')
     print('--------')
     print('Started New here ')
-    print('Created by MARCOS')
+    print('Created by marcos')
     client.loop.create_task(status_task())
 	
 def is_owner(ctx):
@@ -74,7 +74,7 @@ async def servers():
  
 	
 @client.command(pass_context=True)
-@commands.check(is_soyal)
+@commands.check(is_marcos)
 async def botdm(ctx, user: discord.Member, *, msg: str):
     await client.send_typing(user)
     await client.send_message(user, msg)
@@ -219,7 +219,7 @@ async def setupwelcome(ctx):
       server = ctx.message.server
       everyone_perms = discord.PermissionOverwrite(send_messages=False, read_messages=True)
       everyone = discord.ChannelPermissions(target=server.default_role, overwrite=everyone_perms)
-      await client.create_channel(server, 'welcome_swagat',everyone)
+      await client.create_channel(server, '🎉-welcome-🎊',everyone)
 	
 	
 @client.command(pass_context = True)
@@ -316,6 +316,19 @@ async def userinfo(ctx, user: discord.Member):
       embed.set_thumbnail(url=user.avatar_url)
       await client.say(embed=embed)
 
+
+@client.event
+async def on_member_join(member):
+    for channel in member.server.channels:
+        if channel.name == '🎉-welcome-🎊':
+            r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+            embed = discord.Embed(title=f'Welcome {member.name} to {member.server.name}', description='Do not forget to check rules and never try to break any one of them', color = discord.Color((r << 16) + (g << 8) + b))
+            embed.add_field(name='__Thanks for joining__', value='**Hope you will be active here.**', inline=True)
+            embed.set_thumbnail(url='https://cdn.discordapp.com/attachments/486489391083159574/520207004334292992/Loading.gif') 
+            embed.set_image(url = member.avatar_url)
+            embed.add_field(name='__Join position__', value='{}'.format(str(member.server.member_count)), inline=True)
+            embed.add_field(name='Time of joining', value=member.joined_at)
+            await client.send_message(channel, embed=embed)
 	
 @client.event
 async def on_member_remove(member):
