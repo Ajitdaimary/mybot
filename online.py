@@ -98,6 +98,38 @@ async def embed(ctx, *args):
       text = argstr
       color = discord.Color((r << 16) + (g << 8) + b)
       await client.send_message(ctx.message.channel, embed=Embed(color = color, description=text))
-      await client.delete_message(ctx.message)    
+      await client.delete_message(ctx.message)   
+	
+	
+@client.command(pass_context = True)
+@commands.has_permissions(administrator = True)
+async def dm(ctx, user: discord.Member, *, msg: str):
+    try:
+        await client.send_message(user, msg)
+        await client.delete_message(ctx.message)          
+        await client.say("Success! Your DM has made it! :white_check_mark: ")
+    except discord.ext.commands.MissingPermissions:
+        await client.say("Aw, come on! You thought you could get away with DM'ing people without permissions.")
+    except:
+        await client.say("Error :x:. Make sure your message is shaped in this way: ^dm [tag person] [msg]")
+
+		 
+@client.command(pass_context = True)
+@commands.has_permissions(administrator=True)
+async def emojiids(ctx):
+  for emoji in ctx.message.author.server.emojis:
+    print(f"<:{emoji.name}:{emoji.id}>")
+    print(" ")    
+	
+@client.command(pass_context = True)
+
+
+@client.command(pass_context = True)
+
+async def botinvite(ctx):
+
+    await client.say('https://discordapp.com/api/oauth2/authorize?client_id=520267296506249216&permissions=8&scope=bot')
+
+
 
 client.run(os.getenv('Token'))
