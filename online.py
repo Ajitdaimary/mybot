@@ -757,5 +757,6 @@ async def lovedetect(ctx, user: discord.Member = None, *, user2: discord.Member 
             embed = discord.Embed(title=f"{shipuser1} ❤ {shipuser2} Love each others", description=f"Love\n`{counter_}` Score:**{score}% **\nLoveName:**{finalName}**", color = discord.Color((r << 16) + (g << 8) + b))
             embed.set_image(url=res['message'])
             await client.say(embed=embed)
+
 	
 client.run(os.getenv('Token'))
