@@ -517,6 +517,19 @@ async def serverinfo(ctx):
     return await client.say(embed = join);
 
 
+@client.command(pass_context=True)
+async def apply(ctx, *, msg: str):
+    channel = client.get_channel('520830825021964305')
+    r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+    embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
+    embed.add_field(name='Application for bot', value='-------------------',inline = False) 
+    embed.add_field(name='User ID:', value='{}'.format(ctx.message.author.id),inline = False)
+    embed.add_field(name='User Name:', value='{}'.format(ctx.message.author.name),inline = False)
+    embed.add_field(name='Server Name:', value='{}'.format(ctx.message.server.name),inline = False)
+    embed.add_field(name='Bot information:', value=msg, inline=False)
+    await client.send_message(channel, embed=embed) 
+    await client.delete_message(ctx.message)
+
 
 @client.command(pass_context = True)
 @commands.has_permissions(administrator=True)     
