@@ -331,13 +331,6 @@ async def dm(ctx, user: discord.Member, *, msg: str):
     except:
         await client.say("Error :x:. Make sure your message is shaped in this way: ^dm [tag person] [msg]")
 
-		 
-@client.command(pass_context = True)
-@commands.has_permissions(administrator=True)
-async def emojiids(ctx):
-  for emoji in ctx.message.author.server.emojis:
-    print(f"<:{emoji.name}:{emoji.id}>")
-    print(" ")    
 	
 	
 @client.command(pass_context = True)
