@@ -94,7 +94,7 @@ async def on_reaction_add(reaction, user):
         r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
         embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
         embed.set_author(name='Emoji COMMANDS')
-        embed.add_field(name = '``!!botinvite``',value ='``!!WOW``', '``!!lol``', '``!!hi``', '``!!love``', '``!!angry``',inline = False)
+        embed.add_field(name = '``!!botinvite``',value ='``!!WOW``', '``!!lol``',inline = False)
         react_message = await client.send_message(user,embed=embed)
         await asyncio.sleep(30)
         await client.delete_message(react_message)
