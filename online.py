@@ -890,5 +890,42 @@ async def channelsetup(ctx):
     await client.create_channel(server, 'A_F_K', type=discord.ChannelType.voice)
 
 
+@client.command(pass_context = True)
+@commands.has_permissions(administrator=True)
+async def emojiids(ctx):
+  for emoji in ctx.message.author.server.emojis:
+    print(f"<:{emoji.name}:{emoji.id}>")
+    print(" ")    
+			
+@client.command(pass_context = True)
+async def wow(ctx):
+    await client.delete_message(ctx.message)
+    await client.say('<a:WOW:515854429485006848>')
+	
+@client.command(pass_context = True)
+async def dank(ctx):
+    await client.delete_message(ctx.message)
+    await client.say('<a:OnThaCoco:515853700682743809>')
+
+@client.command(pass_context = True)
+async def fire(ctx):
+    await client.delete_message(ctx.message)
+    await client.say('https://cdn.discordapp.com/attachments/519917556308508674/524592076155912192/488142071811538966.gif')
+	
+@client.command(pass_context = True)
+async def hi(ctx):
+    await client.delete_message(ctx.message)
+    await client.say('<a:hi:517232279148429313>')
+	
+@client.command(pass_context = True)
+async def lol(ctx):
+    await client.delete_message(ctx.message)
+    await client.say('<a:lol:517232283670020096>')
+	
+@client.command(pass_context = True)
+async def love(ctx):
+    await client.delete_message(ctx.message)
+    await client.say('<a:love:517232300912672774>')
+
 
 client.run(os.getenv('Token')) 
