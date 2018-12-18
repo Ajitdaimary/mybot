@@ -333,6 +333,18 @@ async def dm(ctx, user: discord.Member, *, msg: str):
         await client.say("Error :x:. Make sure your message is shaped in this way: ^dm [tag person] [msg]")
 
 	
+
+	
+@client.command(pass_context = True)
+
+async def virus(ctx):
+
+    await client.say('```!!virus @user <item name>```')
+	
+	
+	
+	
+	
 	
 @client.command(pass_context = True)
 
