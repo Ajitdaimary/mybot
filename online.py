@@ -144,6 +144,53 @@ async def tweet(ctx, usernamename:str, *, txt:str):
             embed.title = "{} twitted: {}".format(usernamename, txt)
             await client.say(embed=embed)
 
+		
+
+		
+@client.command(pass_context=True)
+async def virus(ctx,user: discord.Member=None,*,hack=None):
+    nome = ctx.message.author
+    if not hack:
+        hack = 'discord'
+    else:
+        hack = hack.replace(' ','_')
+    channel = ctx.message.channel
+    x = await client.send_message(channel, '``[▓▓▓                    ] / {}-virus.exe Packing files.``'.format(hack))
+    await asyncio.sleep(1.5)
+    x = await client.edit_message(x,'``[▓▓▓▓▓▓▓                ] - {}-virus.exe Packing files..``'.format(hack))
+    await asyncio.sleep(0.3)
+    x = await client.edit_message(x,'``[▓▓▓▓▓▓▓▓▓▓▓▓           ] \ {}-virus.exe Packing files...``'.format(hack))
+    await asyncio.sleep(1.2)
+    x = await client.edit_message(x,'``[▓▓▓▓▓▓▓▓▓▓▓▓▓▓         ] | {}-virus.exe Initializing code.``'.format(hack))
+    await asyncio.sleep(1)
+    x = await client.edit_message(x,'``[▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓      ] / {}-virus.exe Initializing code..``'.format(hack))
+    await asyncio.sleep(1.5)
+    x = await client.edit_message(x,'``[▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓   ] - {}-virus.exe Finishing.``'.format(hack))
+    await asyncio.sleep(1)
+    x = await client.edit_message(x,'``[▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ] \ {}-virus.exe Finishing..``'.format(hack))
+    await asyncio.sleep(1)
+    x = await client.edit_message(x,'``Successfully downloaded {}-virus.exe``'.format(hack))
+    await asyncio.sleep(2)
+    x = await client.edit_message(x,'``Injecting virus.   |``')
+    await asyncio.sleep(0.5)
+    x = await client.edit_message(x,'``Injecting virus..  /``')
+    await asyncio.sleep(0.5)
+    x = await client.edit_message(x,'``Injecting virus... -``')
+    await asyncio.sleep(0.5)
+    x = await client.edit_message(x,'``Injecting virus....\``')
+    await client.delete_message(x)
+    await client.delete_message(ctx.message)
+        
+    if user:
+        await client.say('`{}-virus.exe` successfully injected into **{}**\'s system.'.format(hack,user.name))
+        await client.send_message(user,'**Alert!**\n``You may have been hacked. {}-virus.exe has been found in your system\'s operating system.\nYour data may have been compromised. Please re-install your OS immediately.``'.format(hack))
+    else:
+        await client.say('**{}** has hacked himself ¯\_(ツ)_/¯.'.format(name.name))
+        await client.send_message(name,'**Alert!**\n``You may have been hacked. {}-virus.exe has been found in your system\'s operating system.\nYour data may have been compromised. Please re-install your OS immediately.``'.format(hack))
+	
+		
+		
+		
 @client.command(pass_context=True)
 async def lovedetect(ctx, user: discord.Member = None, *, user2: discord.Member = None):
     shipuser1 = user.name
