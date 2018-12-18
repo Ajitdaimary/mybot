@@ -63,7 +63,7 @@ async def on_reaction_add(reaction, user):
         r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
         embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
         embed.set_author(name='FUN COMMANDS')
-        embed.add_field(name = 'SEE',value ='Sends donation link')
+        embed.add_field(name = '``!!botinvite``',value ='``!!virus @user <text>``')
         my_msg = await client.send_message(user,embed=embed)
         await asyncio.sleep(30)
         await client.delete_message(my_msg)
@@ -120,7 +120,7 @@ async def help(ctx):
       embed.add_field(name = 'React with ⚙ ',value ='MODERATION COMMANDS.',inline = False)
       embed.add_field(name = 'React with 😁 ',value ='FUN COMMANDS.',inline = False)
       embed.add_field(name = 'React with 👥 ',value ='GENERAL COMMANDS',inline = False)
-      embed.add_field(name = 'React with ⏱ ',value ='ANEMI COMMANDS',inline = False)
+      embed.add_field(name = 'React with ⏱ ',value ='EMOJI COMMANDS',inline = False)
       dmmessage = await client.send_message(author,embed=embed)
       reaction1 = '⚙'
       reaction2 = '😁'
