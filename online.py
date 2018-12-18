@@ -414,6 +414,88 @@ async def happybirthday(ctx, *, msg = None):
 
 
 
+@client.command(pass_context = True)
+@commands.has_permissions(administrator=True)
+async def emojiids(ctx):
+  for emoji in ctx.message.author.server.emojis:
+    print(f"<:{emoji.name}:{emoji.id}>")
+    print(" ")    
+			
+@client.command(pass_context = True)
+async def wow(ctx):
+    await client.delete_message(ctx.message)
+    await client.say('<a:WOW:515854429485006848>')
+	
+@client.command(pass_context = True)
+async def dank(ctx):
+    await client.delete_message(ctx.message)
+    await client.say('<a:OnThaCoco:515853700682743809>')
+
+@client.command(pass_context = True)
+async def santa(ctx):
+    await client.delete_message(ctx.message)
+    await client.say('<a:santa:517232271678504970>')
+	
+@client.command(pass_context = True)
+async def hi(ctx):
+    await client.delete_message(ctx.message)
+    await client.say('<a:hi:517232279148429313>')
+	
+@client.command(pass_context = True)
+async def lol(ctx):
+    await client.delete_message(ctx.message)
+    await client.say('<a:lol:517232283670020096>')
+	
+@client.command(pass_context = True)
+async def love(ctx):
+    await client.delete_message(ctx.message)
+    await client.say('<a:love:517232300912672774>')
+	
+@client.command(pass_context = True)
+async def mad(ctx):
+    await client.delete_message(ctx.message)
+    await client.say('<a:mad:517232301176913951>')
+	
+@client.command(pass_context = True)
+async def alien(ctx):
+    await client.delete_message(ctx.message)
+    await client.say('<a:alien:517232332663422986>')
+
+@client.command(pass_context = True)
+async def fearfromme(ctx):
+    await client.delete_message(ctx.message)
+    await client.say('<a:shiroeglassespush:516174320532193289>')
+	   	
+@client.command(pass_context = True)
+async def angry(ctx):
+    await client.delete_message(ctx.message)
+    await client.say('<a:angear:516174316950388772>')
+	
+@client.command(pass_context = True)
+async def surprised(ctx):
+    await client.delete_message(ctx.message)
+    await client.say('<a:eyebigger:516174315058626560>')
+		
+@client.command(pass_context = True)
+async def cat(ctx):
+    await client.delete_message(ctx.message)
+    await client.say('<a:agooglecat:516174312294842389>')
+		
+@client.command(pass_context = True)
+async def thinking1(ctx):
+    await client.delete_message(ctx.message)
+    await client.say('<a:thinking:516183328613990400>')
+	
+@client.command(pass_context = True)
+async def thinking2(ctx):
+    await client.delete_message(ctx.message)
+    await client.say('<a:thinking2:516183323127709699>')
+
+
+
+
+
+
 
 @client.command(pass_context = True)
 @commands.has_permissions(administrator=True)
