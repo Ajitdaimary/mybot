@@ -63,7 +63,7 @@ async def on_reaction_add(reaction, user):
         r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
         embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
         embed.set_author(name='FUN COMMANDS')
-        embed.add_field(name = '``!!botinvite``, ``!!virus @user <text>``, ',value ='Sends donation link')
+        embed.add_field(name = 'SEE',value ='Sends donation link')
         my_msg = await client.send_message(user,embed=embed)
         await asyncio.sleep(30)
         await client.delete_message(my_msg)
@@ -72,7 +72,7 @@ async def on_reaction_add(reaction, user):
         r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
         embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
         embed.set_author(name='MODERATION COMMANDS')
-        embed.add_field(name = '``!!botinvite``',value ='``!!dm @user <text>``, ``!!muteinchannel @user <time in minutes>``, ``!!setupwelcomer``, ``!!embed <text>``, ``!!role @user <rolename>``, ``!!setnick @user <New nickname>``, ``!!serverinfo``, ``!!userinfo @user``, ``!!lock #channel or !!lock``, ``!!unlock #channel or !!unlock``, ``!!membercount``, ``!!say <text>``, ``!!kick @user``, ``!!mute @user <time in minutes>``, ``!!unmute @user``, ',inline = False)
+        embed.add_field(name = 'SEE',value ='``m!dm @user <text>``, ``m!muteinchannel @user <time in minutes>``, ``m!setupwelcomer``, ``m!embed <text>``, ``m!role @user <rolename>``, ``m!setnick @user <New nickname>``, ``m!serverinfo``, ``m!userinfo @user``, ``m!lock #channel or mv!lock``, ``m!unlock #channel or mv!unlock``, ``m!membercount``, ``m!say <text>``, ``m!kick @user``, ``m!mute @user <time in minutes>``, ``m!unmute @user``, ',inline = False)
         react_message = await client.send_message(user,embed=embed)
         await client.add_reaction(react_message, reaction)
         await asyncio.sleep(30)
@@ -85,15 +85,14 @@ async def on_reaction_add(reaction, user):
         r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
         embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
         embed.set_author(name='GENERAL COMMANDS')
-        embed.add_field(name = '``!!botinvite``',value ='``!!help``, ``!!google <anything>``, ``!!youtube <anything>``, ``!!botinvite``, ``!!ping``, ``!!serverinvite``, ``!!avatar or !!avatar @user``, ``!!meme``, ',inline = False)
+        embed.add_field(name = 'SEE',value ='``m!help``, ``m!google <anything>``, ``mv!youtube <anything>``, ``m!botinvite``, ``m!ping``, ``m!serverinvite``, ``mv!avatar or mv!avatar @user``, ``m!meme``, ',inline = False)
         react_message = await client.send_message(user,embed=embed)
         await asyncio.sleep(30)
         await client.delete_message(react_message)
         
-   
-
-
-       if reaction.emoji == '⏱':
+        
+        
+      if reaction.emoji == '⏱':
         r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
         embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
         embed.set_author(name='Emoji Help')
@@ -105,6 +104,7 @@ async def on_reaction_add(reaction, user):
       if reaction.emoji == '🇻':
             role = discord.utils.get(user.server.roles, name='Verified')
             await client.add_roles(user, role)
+
 
 
 @client.command(pass_context = True)
@@ -120,7 +120,7 @@ async def help(ctx):
       embed.add_field(name = 'React with ⚙ ',value ='MODERATION COMMANDS.',inline = False)
       embed.add_field(name = 'React with 😁 ',value ='FUN COMMANDS.',inline = False)
       embed.add_field(name = 'React with 👥 ',value ='GENERAL COMMANDS',inline = False)
-      embed.add_field(name = 'React with ⏱ ',value ='Emoji COMMANDS',inline = False)
+      embed.add_field(name = 'React with ⏱ ',value ='ANEMI COMMANDS',inline = False)
       dmmessage = await client.send_message(author,embed=embed)
       reaction1 = '⚙'
       reaction2 = '😁'
@@ -131,7 +131,6 @@ async def help(ctx):
       await client.add_reaction(dmmessage, reaction3)
       await client.add_reaction(dmmessage, reaction4)
       await client.say('I sent you the list of commands in a private message. Check your direct messages')
-   
     
 
 @client.command(pass_context=True)
