@@ -481,10 +481,6 @@ async def thinking1(ctx):
     await client.delete_message(ctx.message)
     await client.say('<a:thinking:516183328613990400>')
 	
-@client.command(pass_context = True)
-async def virus(ctx):
-    await client.delete_message(ctx.message)
-    await client.say('```!!virus @user <text>```')
 
 
 
