@@ -116,7 +116,7 @@ async def help(ctx):
       r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
       embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
       embed.set_author(name='Help')
-      embed.add_field(name = 'Having doubts? Join our server and clear your doubts. Server link:',value ='https://discord.gg/zxBfDY7',inline = False)
+      embed.add_field(name = 'Please Join my Server and Help and Support !! Server Link:',value ='https://discord.gg/zxBfDY7',inline = False)
       embed.add_field(name = 'React with ⚙ ',value ='MODERATION COMMANDS.',inline = False)
       embed.add_field(name = 'React with 😁 ',value ='FUN COMMANDS.',inline = False)
       embed.add_field(name = 'React with 👥 ',value ='GENERAL COMMANDS',inline = False)
